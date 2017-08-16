@@ -3,16 +3,21 @@ package com.meeej.chiangj.mooncake;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 public class Mooncake{
 
     //Preset colors
     public static final int COLOR_DEFAULT = Color.parseColor("#FFFFFF");
-    public static final int COLOR_SUCCESS = Color.parseColor("#FFFFFF");
-    public static final int COLOR_WARNING = Color.parseColor("#FFFFFF");
-    public static final int COLOR_ERROR = Color.parseColor("#FFFFFF");
+    public static final int COLOR_SUCCESS = Color.parseColor("#43BD8D");
+    public static final int COLOR_WARNING = Color.parseColor("#F7C43D");
+    public static final int COLOR_ERROR = Color.parseColor("#FF6F69");
 
     //required
     private final Context mContext;
@@ -53,7 +58,7 @@ public class Mooncake{
     public static Toast original(Context context, CharSequence text, int duration, int lottieView){
         return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
     }
-    
+
     //Success
     public static Toast success(Context context,CharSequence text, int duration){
         return success(context, text, duration, (Drawable)null);
@@ -89,9 +94,20 @@ public class Mooncake{
 
     //Custom
     public static Toast custom(MooncakeBuilder builder){
-
         //TODO create a new Toast with customizations and return it so that other methods above can use it
-        return null;
+        Toast customToast = new Toast(builder.context);
+        customToast.setDuration(builder.duration);
+        customToast.setText(builder.text);
+
+        LayoutInflater inflater = (LayoutInflater) builder.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View mooncakeLayout = inflater.inflate(R.layout.mooncake_layout, null);
+        ImageView mooncakeIcon = mooncakeLayout.findViewById(R.id.mooncake_icon);
+        LottieAnimationView mooncakeLottie = mooncakeLayout.findViewById(R.id.mooncake_lottie);
+        TextView mooncakeText = mooncakeLayout.findViewById(R.id.mooncake_text);
+
+        mooncakeLayout.setBackgroundColor(builder.backgroundColor);
+
+        return customToast;
     }
 
     //Builder for custom Mooncake
