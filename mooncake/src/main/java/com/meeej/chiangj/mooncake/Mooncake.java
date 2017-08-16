@@ -27,8 +27,9 @@ public class Mooncake{
     private int mBorderWidth;
     private int mBorderColor;
     private View.OnClickListener mOnClickListener;
+    private int mLottieView;
 
-    private Mooncake(CustomBuilder builder){
+    private Mooncake(MooncakeBuilder builder){
         this.mContext = builder.context;
         this.mText = builder.text;
         this.mDuration = builder.duration;
@@ -39,49 +40,62 @@ public class Mooncake{
         this.mBorderWidth = builder.borderWidth;
         this.mBorderColor = builder.borderColor;
         this.mOnClickListener = builder.onClickListener;
+        this.mLottieView = builder.lottieView;
     }
 
-    //Default
+    //Original
     public static Toast original(Context context, CharSequence text, int duration){
-        return original(context, text, duration, null);
+        return original(context, text, duration, (Drawable)null);
     }
     public static Toast original(Context context, CharSequence text, int duration, Drawable icon){
-        return custom(new CustomBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).icon(icon));
+        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).icon(icon));
     }
-
+    public static Toast original(Context context, CharSequence text, int duration, int lottieView){
+        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
+    }
+    
     //Success
     public static Toast success(Context context,CharSequence text, int duration){
-        return success(context, text, duration);
+        return success(context, text, duration, (Drawable)null);
     }
     public static Toast success(Context context,CharSequence text, int duration, Drawable icon){
-        return custom(new CustomBuilder(context, text, duration).backgroundColor(COLOR_SUCCESS).icon(icon));
+        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_SUCCESS).icon(icon));
+    }
+    public static Toast success(Context context, CharSequence text, int duration, int lottieView){
+        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
     }
 
     //Warning
     public static Toast warning(Context context,CharSequence text, int duration){
-        return warning(context, text, duration);
+        return warning(context, text, duration, (Drawable)null);
     }
     public static Toast warning(Context context,CharSequence text, int duration, Drawable icon){
-        return custom(new CustomBuilder(context, text, duration).backgroundColor(COLOR_WARNING).icon(icon));
+        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_WARNING).icon(icon));
+    }
+    public static Toast warning(Context context, CharSequence text, int duration, int lottieView){
+        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
     }
 
     //Error
     public static Toast error(Context context,CharSequence text, int duration){
-        return error(context, text, duration);
+        return error(context, text, duration, (Drawable)null);
     }
     public static Toast error(Context context,CharSequence text, int duration, Drawable icon){
-        return custom(new CustomBuilder(context, text, duration).backgroundColor(COLOR_ERROR).icon(icon));
+        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_ERROR).icon(icon));
+    }
+    public static Toast error(Context context, CharSequence text, int duration, int lottieView){
+        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
     }
 
     //Custom
-    public static Toast custom(CustomBuilder builder){
+    public static Toast custom(MooncakeBuilder builder){
 
         //TODO create a new Toast with customizations and return it so that other methods above can use it
         return null;
     }
 
     //Builder for custom Mooncake
-    private static class CustomBuilder{
+    private static class MooncakeBuilder {
 
         //required
         private final Context context;
@@ -96,39 +110,44 @@ public class Mooncake{
         private int borderWidth;
         private int borderColor;
         private View.OnClickListener onClickListener;
+        private int lottieView;
 
-        public CustomBuilder(Context context, CharSequence text, int duration){
+        public MooncakeBuilder(Context context, CharSequence text, int duration){
             this.context = context;
             this.text = text;
             this.duration = duration;
         }
 
-        public CustomBuilder icon(Drawable icon){
+        public MooncakeBuilder icon(Drawable icon){
             this.icon = icon;
             return this;
         }
-        public CustomBuilder backgroundColor(int backgroundColor){
+        public MooncakeBuilder backgroundColor(int backgroundColor){
             this.backgroundColor = backgroundColor;
             return this;
         }
-        public CustomBuilder font(int font){
+        public MooncakeBuilder font(int font){
             this.font = font;
             return this;
         }
-        public CustomBuilder fontColor(int fontColor){
+        public MooncakeBuilder fontColor(int fontColor){
             this.fontColor = fontColor;
             return this;
         }
-        public CustomBuilder borderWidth(int borderWidth){
+        public MooncakeBuilder borderWidth(int borderWidth){
             this.borderWidth = borderWidth;
             return this;
         }
-        public CustomBuilder borderColor(int borderColor){
+        public MooncakeBuilder borderColor(int borderColor){
             this.borderColor = borderColor;
             return this;
         }
-        public CustomBuilder onClickListener(View.OnClickListener onClickListener){
+        public MooncakeBuilder onClickListener(View.OnClickListener onClickListener){
             this.onClickListener = onClickListener;
+            return this;
+        }
+        public MooncakeBuilder lottieView(int lottieView){
+            this.lottieView = lottieView;
             return this;
         }
 
