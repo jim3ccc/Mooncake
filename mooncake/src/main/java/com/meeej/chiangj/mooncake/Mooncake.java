@@ -43,45 +43,38 @@ public class Mooncake{
 
     //Default
     public static Toast original(Context context, CharSequence text, int duration){
-        return null;
+        return original(context, text, duration, null);
     }
     public static Toast original(Context context, CharSequence text, int duration, Drawable icon){
-        return null;
+        return custom(new CustomBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).icon(icon));
     }
 
     //Success
     public static Toast success(Context context,CharSequence text, int duration){
-        return null;
+        return success(context, text, duration);
     }
     public static Toast success(Context context,CharSequence text, int duration, Drawable icon){
-        return null;
+        return custom(new CustomBuilder(context, text, duration).backgroundColor(COLOR_SUCCESS).icon(icon));
     }
 
     //Warning
     public static Toast warning(Context context,CharSequence text, int duration){
-        return null;
+        return warning(context, text, duration);
     }
     public static Toast warning(Context context,CharSequence text, int duration, Drawable icon){
-        return null;
+        return custom(new CustomBuilder(context, text, duration).backgroundColor(COLOR_WARNING).icon(icon));
     }
 
     //Error
     public static Toast error(Context context,CharSequence text, int duration){
-        return null;
+        return error(context, text, duration);
     }
     public static Toast error(Context context,CharSequence text, int duration, Drawable icon){
-        return null;
+        return custom(new CustomBuilder(context, text, duration).backgroundColor(COLOR_ERROR).icon(icon));
     }
 
     //Custom
-    public static Toast custom(Context context, CharSequence text, int duration,
-                               Drawable icon,
-                               int backgroundcolor,
-                               int font,
-                               int fontColor,
-                               int borderWidth,
-                               int borderColor,
-                               View.OnClickListener onClickListener){
+    public static Toast custom(CustomBuilder builder){
 
         //TODO create a new Toast with customizations and return it so that other methods above can use it
         return null;
@@ -139,8 +132,8 @@ public class Mooncake{
             return this;
         }
 
-        public Mooncake build(){
-            return new Mooncake(this);
+        public Toast build(){
+            return Mooncake.custom(this);
         }
     }
 
