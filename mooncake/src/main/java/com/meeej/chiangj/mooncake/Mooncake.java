@@ -19,35 +19,6 @@ public class Mooncake{
     public static final int COLOR_WARNING = Color.parseColor("#F7C43D");
     public static final int COLOR_ERROR = Color.parseColor("#FF6F69");
 
-    //required
-    private final Context mContext;
-    private final CharSequence mText;
-    private final int mDuration;
-
-    //optional
-    private Drawable mIcon;
-    private int mBackgroundColor;
-    private int mFont;
-    private int mFontColor;
-    private int mBorderWidth;
-    private int mBorderColor;
-    private View.OnClickListener mOnClickListener;
-    private int mLottieView;
-
-    private Mooncake(MooncakeBuilder builder){
-        this.mContext = builder.context;
-        this.mText = builder.text;
-        this.mDuration = builder.duration;
-        this.mIcon = builder.icon;
-        this.mBackgroundColor = builder.backgroundColor;
-        this.mFont = builder.font;
-        this.mFontColor = builder.fontColor;
-        this.mBorderWidth = builder.borderWidth;
-        this.mBorderColor = builder.borderColor;
-        this.mOnClickListener = builder.onClickListener;
-        this.mLottieView = builder.lottieView;
-    }
-
     //Original
     public static Toast original(Context context, CharSequence text, int duration){
         return original(context, text, duration, (Drawable)null);
