@@ -111,7 +111,7 @@ public class Mooncake{
     }
 
     //Builder for custom Mooncake
-    private static class MooncakeBuilder {
+    public static class MooncakeBuilder {
 
         //required
         private final Context context;
