@@ -2,8 +2,12 @@ package com.meeej.chiangj.mooncake;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
+import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +58,7 @@ public class Mooncake extends Toast{
         return original(context, "original mooncake", duration);
     }
     public static Mooncake original(Context context, CharSequence text, int duration){
-        return custom(context, LOTUS, null, text, duration);
+        return custom(context, LOTUS, text, duration);
     }
 
 
@@ -66,7 +70,7 @@ public class Mooncake extends Toast{
         return success(context, "success mooncake", duration);
     }
     public static Mooncake success(Context context,CharSequence text, int duration){
-        return custom(context, GREEN_TEA, null, text, duration);
+        return custom(context, GREEN_TEA, text, duration);
     }
 
 
@@ -78,7 +82,7 @@ public class Mooncake extends Toast{
         return warning(context, "warning mooncake", duration);
     }
     public static Mooncake warning(Context context,CharSequence text, int duration){
-        return custom(context, PINEAPPLE, null, text, duration);
+        return custom(context, PINEAPPLE, text, duration);
     }
 
 
@@ -90,30 +94,24 @@ public class Mooncake extends Toast{
         return error(context, "error mooncake", duration);
     }
     public static Mooncake error(Context context,CharSequence text, int duration){
-        return custom(context, RED_BEAN, null, text, duration);
+        return custom(context, RED_BEAN, text, duration);
     }
 
 
     //Custom
     public static Mooncake custom(Context context, String backgroundColor){
-        return custom(context, backgroundColor, null, DURATION_SHORT);
+        return custom(context, backgroundColor, DURATION_SHORT);
     }
     public static Mooncake custom(Context context, String backgroundColor, int duration){
-        return custom(context, backgroundColor, null, duration);
+        return custom(context, backgroundColor, duration, "custom mooncake");
+    }
+    public static Mooncake custom(Context context, String backgroundColor, CharSequence text){
+        return custom(context, backgroundColor, text, DURATION_SHORT);
     }
     public static Mooncake custom(Context context, String backgroundColor, int duration, CharSequence text){
-        return custom(context, backgroundColor, null, text, duration);
+        return custom(context, backgroundColor, text, duration);
     }
-    public static Mooncake custom(Context context, String backgroundColor, String tint){
-        return custom(context, backgroundColor, tint, DURATION_SHORT);
-    }
-    public static Mooncake custom(Context context, String backgroundColor, String tint, int duration){
-        return custom(context, backgroundColor, tint, "custom mooncake", duration);
-    }
-    public static Mooncake custom(Context context, String backgroundColor, String tint, CharSequence text){
-        return custom(context, backgroundColor, tint, text, DURATION_SHORT);
-    }
-    public static Mooncake custom(Context context, String backgroundColor, String tint, CharSequence text, int duration){
+    public static Mooncake custom(Context context, String backgroundColor, CharSequence text, int duration){
         customMooncake = new Mooncake(context);
         customMooncake.setDuration(duration);
 
@@ -124,30 +122,23 @@ public class Mooncake extends Toast{
         ImageView mooncakeImageView = mooncakeLayout.findViewById(R.id.mooncake_icon);
         ViewManager viewManager = ((ViewManager)(mooncakeLayout.findViewById(R.id.mooncake_root).getRootView()));
         Drawable frame;
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            frame = context.getDrawable(R.drawable.toast_frame);
-        }else {
-            frame = context.getResources().getDrawable(R.drawable.toast_frame);
-        }
+        NinePatchDrawable ninePatchDrawable;
 
         //background
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
-            mooncakeLayout.setBackground(frame);
-        }else{
-            mooncakeLayout.setBackgroundDrawable(frame);
-        }
+        frame = colorDrawableFrame(context, Color.parseColor(backgroundColor));
+        setBackground(mooncakeLayout, frame);
 
         //TODO set icon, font, fontColor, borderWidth, borderColor, onClickListener, lottieView, gravity
 
         //textColor
-        mooncakeText.setTextColor(Color.parseColor(Mooncake.fontColor));
+        if(Mooncake.fontColor != null){
+            mooncakeText.setTextColor(Color.parseColor(Mooncake.fontColor));
+        }
 
         //text
         mooncakeText.setText(text);
 
-        //backgroundColor
-        mooncakeLayout.setBackgroundColor(Color.parseColor(backgroundColor));
+        //text size
 
         //gravity
         if(Mooncake.gravity != -1){
@@ -249,6 +240,32 @@ public class Mooncake extends Toast{
             Mooncake.xOffset = this.xOffset;
             Mooncake.yOffset = this.yOffset;
         }
+    }
+
+    private static Drawable getDrawable(Context context, @DrawableRes int id){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            return context.getDrawable(R.drawable.toast_frame);
+        }else {
+            return context.getResources().getDrawable(R.drawable.toast_frame);
+        }
+    }
+
+    private static void setBackground(View view, Drawable drawable){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+            view.setBackground(drawable);
+        }else{
+            view.setBackgroundDrawable(drawable);
+        }
+    }
+
+    private static Drawable colorDrawableFrame(Context context, @ColorInt int tintColor) {
+        final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, R.drawable.toast_frame);
+        return tint(toastDrawable, tintColor);
+    }
+
+    static Drawable tint(Drawable drawable, @ColorInt int tintColor) {
+        drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+        return drawable;
     }
 
 

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Mooncake.Ingredients.ingredients().setFontColor("#ecb939");
+        /*Mooncake.Ingredients.ingredients().setFontColor("#ecb939");
 
 
         Mooncake.Ingredients.ingredients().setFontColor("#a200ff").prepare();
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Mooncake.Ingredients.ingredients().setFontColor("#FFFFFF").setGravity(Gravity.TOP, 0, 0).prepare();
         Mooncake.custom(this, "#ffd4e5").show();
 
-        Mooncake.Ingredients.ingredients().setGravity(Gravity.BOTTOM, 10, 20).prepare();
+        Mooncake.Ingredients.ingredients().setGravity(Gravity.BOTTOM, 10, 20).prepare();*/
         Mooncake.success(this, "hello2", Toast.LENGTH_SHORT).show();
 
 
