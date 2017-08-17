@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-public class Mooncake{
+public class Mooncake extends Toast{
 
     //Duration
     public static final int DURATION_SHORT = Toast.LENGTH_SHORT;
@@ -24,76 +24,80 @@ public class Mooncake{
     public static final String PINEAPPLE = "#F7C43D";
     public static final String RED_BEAN = "#FF6F69";
 
+    private Mooncake(Context context){
+        super(context);
+    }
+
     //Original
-    public static Toast original(Context context){
+    public static Mooncake original(Context context){
         return original(context, "original mooncake", DURATION_SHORT);
     }
-    public static Toast original(Context context, int duration){
+    public static Mooncake original(Context context, int duration){
         return original(context, "original mooncake", duration);
     }
-    public static Toast original(Context context, CharSequence text, int duration){
+    public static Mooncake original(Context context, CharSequence text, int duration){
         return custom(context, LOTUS, null, text, duration);
     }
 
 
     //Success
-    public static Toast success(Context context){
+    public static Mooncake success(Context context){
         return success(context, "success mooncake", DURATION_SHORT);
     }
-    public static Toast success(Context context, int duration){
+    public static Mooncake success(Context context, int duration){
         return success(context, "success mooncake", duration);
     }
-    public static Toast success(Context context,CharSequence text, int duration){
+    public static Mooncake success(Context context,CharSequence text, int duration){
         return custom(context, GREEN_TEA, null, text, duration);
     }
 
 
     //Warning
-    public static Toast warning(Context context){
+    public static Mooncake warning(Context context){
         return warning(context, "warning mooncake", DURATION_SHORT);
     }
-    public static Toast warning(Context context, int duration){
+    public static Mooncake warning(Context context, int duration){
         return warning(context, "warning mooncake", duration);
     }
-    public static Toast warning(Context context,CharSequence text, int duration){
+    public static Mooncake warning(Context context,CharSequence text, int duration){
         return custom(context, PINEAPPLE, null, text, duration);
     }
 
 
     //Error
-    public static Toast error(Context context){
+    public static Mooncake error(Context context){
         return error(context, "error mooncake", DURATION_SHORT);
     }
-    public static Toast error(Context context, int duration){
+    public static Mooncake error(Context context, int duration){
         return error(context, "error mooncake", duration);
     }
-    public static Toast error(Context context,CharSequence text, int duration){
+    public static Mooncake error(Context context,CharSequence text, int duration){
         return custom(context, RED_BEAN, null, text, duration);
     }
 
 
     //Custom
-    public static Toast custom(Context context, String backgroundColor){
+    public static Mooncake custom(Context context, String backgroundColor){
         return custom(context, backgroundColor, null, DURATION_SHORT);
     }
-    public static Toast custom(Context context, String backgroundColor, int duration){
+    public static Mooncake custom(Context context, String backgroundColor, int duration){
         return custom(context, backgroundColor, null, duration);
     }
-    public static Toast custom(Context context, String backgroundColor, int duration, CharSequence text){
+    public static Mooncake custom(Context context, String backgroundColor, int duration, CharSequence text){
         return custom(context, backgroundColor, null, text, duration);
     }
-    public static Toast custom(Context context, String backgroundColor, String tint){
+    public static Mooncake custom(Context context, String backgroundColor, String tint){
         return custom(context, backgroundColor, tint, DURATION_SHORT);
     }
-    public static Toast custom(Context context, String backgroundColor, String tint, int duration){
+    public static Mooncake custom(Context context, String backgroundColor, String tint, int duration){
         return custom(context, backgroundColor, tint, "custom mooncake", duration);
     }
-    public static Toast custom(Context context, String backgroundColor, String tint, CharSequence text){
+    public static Mooncake custom(Context context, String backgroundColor, String tint, CharSequence text){
         return custom(context, backgroundColor, tint, text, DURATION_SHORT);
     }
-    public static Toast custom(Context context, String backgroundColor, String tint, CharSequence text, int duration){
-        Toast customToast = new Toast(context);
-        customToast.setDuration(duration);
+    public static Mooncake custom(Context context, String backgroundColor, String tint, CharSequence text, int duration){
+        Mooncake customMooncake = new Mooncake(context);
+        customMooncake.setDuration(duration);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mooncakeLayout = inflater.inflate(R.layout.mooncake_layout, null);
@@ -103,14 +107,21 @@ public class Mooncake{
 
         mooncakeText.setText(text);
         mooncakeLayout.setBackgroundColor(Color.parseColor(backgroundColor));
-        customToast.setView(mooncakeLayout);
+        customMooncake.setView(mooncakeLayout);
 
 
-        return customToast;
+        return customMooncake;
     }
 
     //Customize your own Mooncake
+    public void addIngredients(Ingredients ingredients){
 
+    }
+
+    //Ingredients
+    public static class Ingredients{
+
+    }
 
 
 }
