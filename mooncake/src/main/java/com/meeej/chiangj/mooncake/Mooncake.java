@@ -3,14 +3,11 @@ package com.meeej.chiangj.mooncake;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.airbnb.lottie.LottieAnimationView;
 
 public class Mooncake extends Toast{
 
@@ -25,6 +22,9 @@ public class Mooncake extends Toast{
     private static int borderColor;
     private static View.OnClickListener onClickListener;
     private static int lottieView;
+    private static int gravity = -1;
+    private static int xOffset;
+    private static int yOffset;
 
 
     //Duration
@@ -116,9 +116,23 @@ public class Mooncake extends Toast{
         View mooncakeLayout = inflater.inflate(R.layout.mooncake_layout, null);
         TextView mooncakeText = mooncakeLayout.findViewById(R.id.mooncake_text);
 
+        //TODO set icon, font, fontColor, borderWidth, borderColor, onClickListener, lottieView, gravity
+
+        //textColor
         mooncakeText.setTextColor(Color.parseColor(Mooncake.fontColor));
+
+        //text
         mooncakeText.setText(text);
+
+        //backgroundColor
         mooncakeLayout.setBackgroundColor(Color.parseColor(backgroundColor));
+        
+        //gravity
+        if(Mooncake.gravity != -1){
+            customMooncake.setGravity(Mooncake.gravity, Mooncake.xOffset, Mooncake.yOffset);
+        }
+
+        //view
         customMooncake.setView(mooncakeLayout);
 
         return customMooncake;
@@ -136,6 +150,9 @@ public class Mooncake extends Toast{
         private int borderColor = Mooncake.borderColor;
         private View.OnClickListener onClickListener = Mooncake.onClickListener;
         private int lottieView = Mooncake.lottieView;
+        private int gravity = Mooncake.gravity;
+        private int xOffset = Mooncake.xOffset;
+        private int yOffset = Mooncake.yOffset;
 
         private Ingredients(){}
 
@@ -181,6 +198,13 @@ public class Mooncake extends Toast{
             return this;
         }
 
+        public Ingredients setGravity(int gravity, int xOffset, int yOffset) {
+            this.gravity = gravity;
+            this.xOffset = xOffset;
+            this.yOffset = yOffset;
+            return this;
+        }
+
         public void prepare(){
             Mooncake.icon = this.icon;
             Mooncake.font = this.font;
@@ -189,6 +213,9 @@ public class Mooncake extends Toast{
             Mooncake.borderColor = this.borderColor;
             Mooncake.onClickListener = this.onClickListener;
             Mooncake.lottieView = this.lottieView;
+            Mooncake.gravity = this.gravity;
+            Mooncake.xOffset = this.xOffset;
+            Mooncake.yOffset = this.yOffset;
         }
     }
 
