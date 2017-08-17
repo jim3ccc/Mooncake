@@ -68,7 +68,6 @@ public class Mooncake{
         //TODO create a new Toast with customizations and return it so that other methods above can use it
         Toast customToast = new Toast(builder.context);
         customToast.setDuration(builder.duration);
-        customToast.setText(builder.text);
 
         LayoutInflater inflater = (LayoutInflater) builder.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mooncakeLayout = inflater.inflate(R.layout.mooncake_layout, null);
@@ -76,7 +75,10 @@ public class Mooncake{
         LottieAnimationView mooncakeLottie = mooncakeLayout.findViewById(R.id.mooncake_lottie);
         TextView mooncakeText = mooncakeLayout.findViewById(R.id.mooncake_text);
 
+        mooncakeText.setText(builder.text);
         mooncakeLayout.setBackgroundColor(builder.backgroundColor);
+        customToast.setView(mooncakeLayout);
+
 
         return customToast;
     }
