@@ -3,11 +3,16 @@ package com.meeej.chiangj.mooncake;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 public class Mooncake extends Toast{
 
@@ -18,13 +23,13 @@ public class Mooncake extends Toast{
     private static Drawable icon;
     private static String font;
     private static String fontColor;
-    private static int borderWidth;
-    private static int borderColor;
+    private static int borderWidth = -1;
+    private static int borderColor = -1;
     private static View.OnClickListener onClickListener;
-    private static int lottieView;
+    private static int lottieView = -1;
     private static int gravity = -1;
-    private static int xOffset;
-    private static int yOffset;
+    private static int xOffset = -1;
+    private static int yOffset = -1;
 
 
     //Duration
@@ -115,6 +120,23 @@ public class Mooncake extends Toast{
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mooncakeLayout = inflater.inflate(R.layout.mooncake_layout, null);
         TextView mooncakeText = mooncakeLayout.findViewById(R.id.mooncake_text);
+        LottieAnimationView mooncakeLottieAnimationView = mooncakeLayout.findViewById(R.id.mooncake_lottie);
+        ImageView mooncakeImageView = mooncakeLayout.findViewById(R.id.mooncake_icon);
+        ViewManager viewManager = ((ViewManager)(mooncakeLayout.findViewById(R.id.mooncake_root).getRootView()));
+        Drawable frame;
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            frame = context.getDrawable(R.drawable.toast_frame);
+        }else {
+            frame = context.getResources().getDrawable(R.drawable.toast_frame);
+        }
+
+        //background
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+            mooncakeLayout.setBackground(frame);
+        }else{
+            mooncakeLayout.setBackgroundDrawable(frame);
+        }
 
         //TODO set icon, font, fontColor, borderWidth, borderColor, onClickListener, lottieView, gravity
 
@@ -126,10 +148,20 @@ public class Mooncake extends Toast{
 
         //backgroundColor
         mooncakeLayout.setBackgroundColor(Color.parseColor(backgroundColor));
-        
+
         //gravity
         if(Mooncake.gravity != -1){
             customMooncake.setGravity(Mooncake.gravity, Mooncake.xOffset, Mooncake.yOffset);
+        }
+
+        //lottie
+        if(Mooncake.icon == null){
+            viewManager.removeView(mooncakeImageView);
+        }
+
+        //icon
+        if(Mooncake.lottieView == -1){
+            viewManager.removeView(mooncakeLottieAnimationView);
         }
 
         //view

@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         Mooncake.Ingredients.ingredients().setFontColor("#ecb939");
 
 
-
         Mooncake.Ingredients.ingredients().setFontColor("#a200ff").prepare();
         Mooncake.custom(this, "#D7A3D1").show();
 
@@ -27,5 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         Mooncake.Ingredients.ingredients().setGravity(Gravity.BOTTOM, 10, 20).prepare();
         Mooncake.success(this, "hello2", Toast.LENGTH_SHORT).show();
+
+
     }
 }
