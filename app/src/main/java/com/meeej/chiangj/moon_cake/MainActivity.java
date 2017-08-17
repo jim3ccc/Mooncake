@@ -14,8 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast toast = new Mooncake.MooncakeBuilder(this, "hello", Toast.LENGTH_SHORT).backgroundColor(0xFFD7A3D1).build();
-        toast.show();
+        Mooncake.custom(this, "#D7A3D1").show();
 
         Mooncake.success(this, "hello2", Toast.LENGTH_SHORT).show();
     }

@@ -3,6 +3,7 @@ package com.meeej.chiangj.mooncake;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,137 +14,104 @@ import com.airbnb.lottie.LottieAnimationView;
 
 public class Mooncake{
 
+    //Duration
+    public static final int DURATION_SHORT = Toast.LENGTH_SHORT;
+    public static final int DURATION_LONG = Toast.LENGTH_LONG;
+
     //Preset colors
-    public static final int COLOR_DEFAULT = Color.parseColor("#FFFFFF");
-    public static final int COLOR_SUCCESS = Color.parseColor("#43BD8D");
-    public static final int COLOR_WARNING = Color.parseColor("#F7C43D");
-    public static final int COLOR_ERROR = Color.parseColor("#FF6F69");
+    public static final String LOTUS = "#FFFFFF";
+    public static final String GREEN_TEA = "#43BD8D";
+    public static final String PINEAPPLE = "#F7C43D";
+    public static final String RED_BEAN = "#FF6F69";
 
     //Original
+    public static Toast original(Context context){
+        return original(context, "original mooncake", DURATION_SHORT);
+    }
+    public static Toast original(Context context, int duration){
+        return original(context, "original mooncake", duration);
+    }
     public static Toast original(Context context, CharSequence text, int duration){
-        return original(context, text, duration, (Drawable)null);
+        return custom(context, LOTUS, null, text, duration);
     }
-    public static Toast original(Context context, CharSequence text, int duration, Drawable icon){
-        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).icon(icon));
-    }
-    public static Toast original(Context context, CharSequence text, int duration, int lottieView){
-        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
-    }
+
 
     //Success
+    public static Toast success(Context context){
+        return success(context, "success mooncake", DURATION_SHORT);
+    }
+    public static Toast success(Context context, int duration){
+        return success(context, "success mooncake", duration);
+    }
     public static Toast success(Context context,CharSequence text, int duration){
-        return success(context, text, duration, (Drawable)null);
+        return custom(context, GREEN_TEA, null, text, duration);
     }
-    public static Toast success(Context context,CharSequence text, int duration, Drawable icon){
-        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_SUCCESS).icon(icon));
-    }
-    public static Toast success(Context context, CharSequence text, int duration, int lottieView){
-        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
-    }
+
 
     //Warning
+    public static Toast warning(Context context){
+        return warning(context, "warning mooncake", DURATION_SHORT);
+    }
+    public static Toast warning(Context context, int duration){
+        return warning(context, "warning mooncake", duration);
+    }
     public static Toast warning(Context context,CharSequence text, int duration){
-        return warning(context, text, duration, (Drawable)null);
+        return custom(context, PINEAPPLE, null, text, duration);
     }
-    public static Toast warning(Context context,CharSequence text, int duration, Drawable icon){
-        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_WARNING).icon(icon));
-    }
-    public static Toast warning(Context context, CharSequence text, int duration, int lottieView){
-        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
-    }
+
 
     //Error
+    public static Toast error(Context context){
+        return error(context, "error mooncake", DURATION_SHORT);
+    }
+    public static Toast error(Context context, int duration){
+        return error(context, "error mooncake", duration);
+    }
     public static Toast error(Context context,CharSequence text, int duration){
-        return error(context, text, duration, (Drawable)null);
+        return custom(context, RED_BEAN, null, text, duration);
     }
-    public static Toast error(Context context,CharSequence text, int duration, Drawable icon){
-        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_ERROR).icon(icon));
-    }
-    public static Toast error(Context context, CharSequence text, int duration, int lottieView){
-        return custom(new MooncakeBuilder(context, text, duration).backgroundColor(COLOR_DEFAULT).lottieView(lottieView));
-    }
+
 
     //Custom
-    public static Toast custom(MooncakeBuilder builder){
-        //TODO create a new Toast with customizations and return it so that other methods above can use it
-        Toast customToast = new Toast(builder.context);
-        customToast.setDuration(builder.duration);
+    public static Toast custom(Context context, String backgroundColor){
+        return custom(context, backgroundColor, null, DURATION_SHORT);
+    }
+    public static Toast custom(Context context, String backgroundColor, int duration){
+        return custom(context, backgroundColor, null, duration);
+    }
+    public static Toast custom(Context context, String backgroundColor, int duration, CharSequence text){
+        return custom(context, backgroundColor, null, text, duration);
+    }
+    public static Toast custom(Context context, String backgroundColor, String tint){
+        return custom(context, backgroundColor, tint, DURATION_SHORT);
+    }
+    public static Toast custom(Context context, String backgroundColor, String tint, int duration){
+        return custom(context, backgroundColor, tint, "custom mooncake", duration);
+    }
+    public static Toast custom(Context context, String backgroundColor, String tint, CharSequence text){
+        return custom(context, backgroundColor, tint, text, DURATION_SHORT);
+    }
+    public static Toast custom(Context context, String backgroundColor, String tint, CharSequence text, int duration){
+        Toast customToast = new Toast(context);
+        customToast.setDuration(duration);
 
-        LayoutInflater inflater = (LayoutInflater) builder.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mooncakeLayout = inflater.inflate(R.layout.mooncake_layout, null);
         ImageView mooncakeIcon = mooncakeLayout.findViewById(R.id.mooncake_icon);
         LottieAnimationView mooncakeLottie = mooncakeLayout.findViewById(R.id.mooncake_lottie);
         TextView mooncakeText = mooncakeLayout.findViewById(R.id.mooncake_text);
 
-        mooncakeText.setText(builder.text);
-        mooncakeLayout.setBackgroundColor(builder.backgroundColor);
+        mooncakeText.setText(text);
+        mooncakeLayout.setBackgroundColor(Color.parseColor(backgroundColor));
         customToast.setView(mooncakeLayout);
 
 
         return customToast;
     }
 
-    //Builder for custom Mooncake
-    public static class MooncakeBuilder {
+    //Customize your own Mooncake
 
-        //required
-        private final Context context;
-        private final CharSequence text;
-        private final int duration;
 
-        //optional
-        private Drawable icon;
-        private int backgroundColor;
-        private int font;
-        private int fontColor;
-        private int borderWidth;
-        private int borderColor;
-        private View.OnClickListener onClickListener;
-        private int lottieView;
-
-        public MooncakeBuilder(Context context, CharSequence text, int duration){
-            this.context = context;
-            this.text = text;
-            this.duration = duration;
-        }
-
-        public MooncakeBuilder icon(Drawable icon){
-            this.icon = icon;
-            return this;
-        }
-        public MooncakeBuilder backgroundColor(int backgroundColor){
-            this.backgroundColor = backgroundColor;
-            return this;
-        }
-        public MooncakeBuilder font(int font){
-            this.font = font;
-            return this;
-        }
-        public MooncakeBuilder fontColor(int fontColor){
-            this.fontColor = fontColor;
-            return this;
-        }
-        public MooncakeBuilder borderWidth(int borderWidth){
-            this.borderWidth = borderWidth;
-            return this;
-        }
-        public MooncakeBuilder borderColor(int borderColor){
-            this.borderColor = borderColor;
-            return this;
-        }
-        public MooncakeBuilder onClickListener(View.OnClickListener onClickListener){
-            this.onClickListener = onClickListener;
-            return this;
-        }
-        public MooncakeBuilder lottieView(int lottieView){
-            this.lottieView = lottieView;
-            return this;
-        }
-
-        public Toast build(){
-            return Mooncake.custom(this);
-        }
-    }
 
 }
 
