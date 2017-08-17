@@ -127,51 +127,68 @@ public class Mooncake extends Toast{
     //Ingredients
     public static class Ingredients{
 
-        private static Drawable icon;
-        private static String font;
-        private static String fontColor;
-        private static int borderWidth;
-        private static int borderColor;
-        private static View.OnClickListener onClickListener;
-        private static int lottieView;
+        private static Ingredients ingredients;
 
+        private Drawable icon = Mooncake.icon;
+        private String font = Mooncake.font;
+        private String fontColor = Mooncake.fontColor;
+        private int borderWidth = Mooncake.borderWidth;
+        private int borderColor = Mooncake.borderColor;
+        private View.OnClickListener onClickListener = Mooncake.onClickListener;
+        private int lottieView = Mooncake.lottieView;
 
-        public static void setIcon(Drawable icon) {
-            Mooncake.icon = icon;
+        private Ingredients(){}
+
+        public static  Ingredients ingredients(){
+            if(ingredients == null){
+                ingredients = new Ingredients();
+            }
+            return ingredients;
         }
 
-        public static void setFont(String font) {
-            Mooncake.font = font;
+        public Ingredients setIcon(Drawable icon) {
+            this.icon = icon;
+            return this;
         }
 
-        public static void setFontColor(String fontColor) {
-            Mooncake.fontColor = fontColor;
+        public Ingredients setFont(String font) {
+            this.font = font;
+            return this;
         }
 
-        public static void setBorderWidth(int borderWidth) {
-            Mooncake.borderWidth = borderWidth;
+        public Ingredients setFontColor(String fontColor) {
+            this.fontColor = fontColor;
+            return this;
         }
 
-        public static void setBorderColor(int borderColor) {
-            Mooncake.borderColor = borderColor;
+        public Ingredients setBorderWidth(int borderWidth) {
+            this.borderWidth = borderWidth;
+            return this;
         }
 
-        public static void setOnClickListener(View.OnClickListener onClickListener) {
-            Mooncake.onClickListener = onClickListener;
+        public Ingredients setBorderColor(int borderColor) {
+            this.borderColor = borderColor;
+            return this;
         }
 
-        public static void setLottieView(int lottieView) {
-            Mooncake.lottieView = lottieView;
+        public Ingredients setOnClickListener(View.OnClickListener onClickListener) {
+            this.onClickListener = onClickListener;
+            return this;
         }
 
-        public static void prepare(){
-            Mooncake.icon = Ingredients.icon;
-            Mooncake.font = Ingredients.font;
-            Mooncake.fontColor = Ingredients.fontColor;
-            Mooncake.borderWidth = Ingredients.borderWidth;
-            Mooncake.borderColor = Ingredients.borderColor;
-            Mooncake.onClickListener = Ingredients.onClickListener;
-            Mooncake.lottieView = Ingredients.lottieView;
+        public Ingredients setLottieView(int lottieView) {
+            this.lottieView = lottieView;
+            return this;
+        }
+
+        public void prepare(){
+            Mooncake.icon = this.icon;
+            Mooncake.font = this.font;
+            Mooncake.fontColor = this.fontColor;
+            Mooncake.borderWidth = this.borderWidth;
+            Mooncake.borderColor = this.borderColor;
+            Mooncake.onClickListener = this.onClickListener;
+            Mooncake.lottieView = this.lottieView;
         }
     }
 
