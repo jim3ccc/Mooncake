@@ -14,7 +14,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Mooncake.Ingredients.setFontColor("#ecb939");
         Mooncake.custom(this, "#D7A3D1").show();
+
+        Mooncake.Ingredients.setFontColor("#FFFFFF");
+        Mooncake.custom(this, "#ffd4e5").show();
 
         Mooncake.success(this, "hello2", Toast.LENGTH_SHORT).show();
     }

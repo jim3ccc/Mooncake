@@ -14,6 +14,19 @@ import com.airbnb.lottie.LottieAnimationView;
 
 public class Mooncake extends Toast{
 
+    //Global Mooncake
+    private static Mooncake customMooncake;
+
+    //Additional Mooncake attributes
+    private static Drawable icon;
+    private static String font;
+    private static String fontColor;
+    private static int borderWidth;
+    private static int borderColor;
+    private static View.OnClickListener onClickListener;
+    private static int lottieView;
+
+
     //Duration
     public static final int DURATION_SHORT = Toast.LENGTH_SHORT;
     public static final int DURATION_LONG = Toast.LENGTH_LONG;
@@ -96,31 +109,70 @@ public class Mooncake extends Toast{
         return custom(context, backgroundColor, tint, text, DURATION_SHORT);
     }
     public static Mooncake custom(Context context, String backgroundColor, String tint, CharSequence text, int duration){
-        Mooncake customMooncake = new Mooncake(context);
+        customMooncake = new Mooncake(context);
         customMooncake.setDuration(duration);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mooncakeLayout = inflater.inflate(R.layout.mooncake_layout, null);
-        ImageView mooncakeIcon = mooncakeLayout.findViewById(R.id.mooncake_icon);
-        LottieAnimationView mooncakeLottie = mooncakeLayout.findViewById(R.id.mooncake_lottie);
         TextView mooncakeText = mooncakeLayout.findViewById(R.id.mooncake_text);
 
+        mooncakeText.setTextColor(Color.parseColor(Mooncake.fontColor));
         mooncakeText.setText(text);
         mooncakeLayout.setBackgroundColor(Color.parseColor(backgroundColor));
         customMooncake.setView(mooncakeLayout);
 
-
         return customMooncake;
-    }
-
-    //Customize your own Mooncake
-    public void addIngredients(Ingredients ingredients){
-
     }
 
     //Ingredients
     public static class Ingredients{
 
+        private static Drawable icon;
+        private static String font;
+        private static String fontColor;
+        private static int borderWidth;
+        private static int borderColor;
+        private static View.OnClickListener onClickListener;
+        private static int lottieView;
+
+
+        public static void setIcon(Drawable icon) {
+            Mooncake.icon = icon;
+        }
+
+        public static void setFont(String font) {
+            Mooncake.font = font;
+        }
+
+        public static void setFontColor(String fontColor) {
+            Mooncake.fontColor = fontColor;
+        }
+
+        public static void setBorderWidth(int borderWidth) {
+            Mooncake.borderWidth = borderWidth;
+        }
+
+        public static void setBorderColor(int borderColor) {
+            Mooncake.borderColor = borderColor;
+        }
+
+        public static void setOnClickListener(View.OnClickListener onClickListener) {
+            Mooncake.onClickListener = onClickListener;
+        }
+
+        public static void setLottieView(int lottieView) {
+            Mooncake.lottieView = lottieView;
+        }
+
+        public static void prepare(){
+            Mooncake.icon = Ingredients.icon;
+            Mooncake.font = Ingredients.font;
+            Mooncake.fontColor = Ingredients.fontColor;
+            Mooncake.borderWidth = Ingredients.borderWidth;
+            Mooncake.borderColor = Ingredients.borderColor;
+            Mooncake.onClickListener = Ingredients.onClickListener;
+            Mooncake.lottieView = Ingredients.lottieView;
+        }
     }
 
 
