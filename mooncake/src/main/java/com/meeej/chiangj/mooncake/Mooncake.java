@@ -58,7 +58,7 @@ public class Mooncake extends Toast{
         return original(context, hasIconOrAnim, duration, "original mooncake");
     }
     public static Mooncake original(Context context, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, LOTUS, getDrawable(context, R.drawable.ic_info_outline_white_48dp), hasIconOrAnim, text, duration);
+        return custom(context, LOTUS, getDrawable(context, R.drawable.ic_original), hasIconOrAnim, text, duration);
     }
 
 
@@ -70,7 +70,7 @@ public class Mooncake extends Toast{
         return success(context, hasIconOrAnim, duration, "success mooncake");
     }
     public static Mooncake success(Context context, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, GREEN_TEA, getDrawable(context, R.drawable.ic_check_white_48dp), hasIconOrAnim, text, duration);
+        return custom(context, GREEN_TEA, getDrawable(context, R.drawable.ic_success), hasIconOrAnim, text, duration);
     }
 
 
@@ -82,7 +82,7 @@ public class Mooncake extends Toast{
         return warning(context, hasIconOrAnim, duration, "warning mooncake");
     }
     public static Mooncake warning(Context context, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, PINEAPPLE, getDrawable(context, R.drawable.ic_warning_white_48dp), hasIconOrAnim, text, duration);
+        return custom(context, PINEAPPLE, getDrawable(context, R.drawable.ic_warning), hasIconOrAnim, text, duration);
     }
 
 
@@ -94,7 +94,7 @@ public class Mooncake extends Toast{
         return error(context, hasIconOrAnim, duration, "error mooncake");
     }
     public static Mooncake error(Context context, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, RED_BEAN, getDrawable(context, R.drawable.ic_error_outline_white_48dp), hasIconOrAnim, text, duration);
+        return custom(context, RED_BEAN, getDrawable(context, R.drawable.ic_error), hasIconOrAnim, text, duration);
     }
 
 
