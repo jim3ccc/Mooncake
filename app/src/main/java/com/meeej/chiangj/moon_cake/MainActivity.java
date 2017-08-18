@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Mooncake.custom(this, "#ffd4e5").show();
 
         Mooncake.Ingredients.ingredients().setGravity(Gravity.BOTTOM, 10, 20).prepare();*/
-        Mooncake.success(this, "hello2", Toast.LENGTH_SHORT).show();
+        Mooncake.success(this, false).show();
 
 
     }
