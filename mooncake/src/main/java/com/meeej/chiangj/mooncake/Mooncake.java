@@ -11,6 +11,7 @@ import android.support.annotation.DrawableRes;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,9 +20,6 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 
 public class Mooncake extends Toast{
-
-    //Global Mooncake
-    private static Mooncake customMooncake;
 
     //Additional Mooncake attributes
     private static Drawable icon;
@@ -121,8 +119,6 @@ public class Mooncake extends Toast{
                                   boolean hasIconOrAnim,
                                       CharSequence text, int duration){
 
-        customMooncake = new Mooncake(context);
-        customMooncake.setDuration(duration);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mooncakeLayout = inflater.inflate(R.layout.mooncake_layout, null);
@@ -134,6 +130,9 @@ public class Mooncake extends Toast{
         Drawable frame;
         NinePatchDrawable ninePatchDrawable;
 
+        //instance
+        final Mooncake mooncake = new Mooncake(context);
+
         //background
         frame = colorDrawableFrame(context, Color.parseColor(backgroundColor));
         setBackground(mooncakeLayout, frame);
@@ -142,18 +141,19 @@ public class Mooncake extends Toast{
         if(hasIconOrAnim){
             if(iconOrLottie.equals(ImageType.ICON)){
                 //icon
-                mooncakeLottieAnimationView.setVisibility(View.GONE);
+                removeView(mooncakeLottieAnimationView);
                 mooncakeIcon.setBackgroundResource((int)viewIdOrJson);
 
             }else if(iconOrLottie.equals(ImageType.LOTTIE)){
                 //lottie
+                removeView(mooncakeIcon);
                 mooncakeLottieAnimationView.setAnimation((String)viewIdOrJson);
                 mooncakeLottieAnimationView.playAnimation();
-                mooncakeIcon.setVisibility(View.GONE);
+                mooncakeLottieAnimationView.setScale(2.0f);
             }
         }else {
-            mooncakeLottieAnimationView.setVisibility(View.GONE);
-            mooncakeIcon.setVisibility(View.GONE);
+            removeView(mooncakeLottieAnimationView);
+            removeView(mooncakeIcon);
         }
 
         //textColor
@@ -168,13 +168,16 @@ public class Mooncake extends Toast{
 
         //gravity
         if(Mooncake.gravity != -1) {
-            customMooncake.setGravity(Mooncake.gravity, Mooncake.xOffset, Mooncake.yOffset);
+            mooncake.setGravity(Mooncake.gravity, Mooncake.xOffset, Mooncake.yOffset);
         }
 
         //view
-        customMooncake.setView(mooncakeLayout);
+        mooncake.setView(mooncakeLayout);
 
-        return customMooncake;
+        //duration
+        mooncake.setDuration(duration);
+
+        return mooncake;
     }
 
     //Ingredients
@@ -282,6 +285,10 @@ public class Mooncake extends Toast{
     static Drawable tint(Drawable drawable, @ColorInt int tintColor) {
         drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
         return drawable;
+    }
+
+    static void removeView(View view){
+        ((ViewGroup)view.getParent()).removeView(view);
     }
 
 

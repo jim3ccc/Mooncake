@@ -12,7 +12,8 @@
         android:id="@+id/mooncake_lottie"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        app:lottie_loop="true" />
+        app:lottie_loop="true"
+        app:lottie_scale="2.0"/>
 
     <ImageView
         android:id="@+id/mooncake_icon"
