@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         mShowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Mooncake.custom(MainActivity.this, "#EE82EE", "upload-lottie.json", Mooncake.ImageType.LOTTIE, true, Mooncake.DURATION_LONG).show();
+                Mooncake.custom(MainActivity.this, "#EE82EE", "birthday-gift.json", Mooncake.ImageType.LOTTIE, true, Mooncake.DURATION_SHORT).show();
             }
         });
     }

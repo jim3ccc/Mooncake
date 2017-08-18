@@ -10,10 +10,9 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/mooncake_lottie"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:lottie_loop="true"
-        app:lottie_scale="2.0"/>
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:lottie_loop="true" />
 
     <ImageView
         android:id="@+id/mooncake_icon"
@@ -25,6 +24,7 @@
     <TextView
         android:id="@+id/mooncake_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"/>
 
 </LinearLayout>
