@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         Mooncake.Ingredients.ingredients().setGravity(Gravity.BOTTOM, 10, 20).prepare();*/
         Mooncake.success(this, false).show();
+        Mooncake.warning(this, true).show();
 
 
     }
