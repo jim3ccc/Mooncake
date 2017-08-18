@@ -46,73 +46,79 @@ public class Mooncake extends Toast{
     public static final String PINEAPPLE = "#F7C43D";
     public static final String RED_BEAN = "#FF6F69";
 
+    public static enum ImageType{
+        ICON,
+        LOTTIE
+    }
+
     private Mooncake(Context context){
         super(context);
     }
 
     //Original
-    public static Mooncake original(Context context, boolean hasIconOrAnim){
-        return original(context, hasIconOrAnim, DURATION_SHORT, "original mooncake");
+    public static Mooncake original(Context context, ImageType iconOrLottie, boolean hasIconOrAnim){
+        return original(context, iconOrLottie, DURATION_SHORT, "original mooncake", hasIconOrAnim);
     }
-    public static Mooncake original(Context context, boolean hasIconOrAnim, int duration){
-        return original(context, hasIconOrAnim, duration, "original mooncake");
+    public static Mooncake original(Context context, ImageType iconOrLottie, int duration, boolean hasIconOrAnim){
+        return original(context, iconOrLottie, duration, "original mooncake", hasIconOrAnim);
     }
-    public static Mooncake original(Context context, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, LOTUS, getDrawable(context, R.drawable.ic_original), hasIconOrAnim, text, duration);
+    public static Mooncake original(Context context, ImageType iconOrLottie, int duration, CharSequence text, boolean hasIconOrAnim){
+        return custom(context, GREEN_TEA, R.drawable.ic_original, iconOrLottie, hasIconOrAnim, text, duration);
     }
 
 
     //Success
-    public static Mooncake success(Context context, boolean hasIconOrAnim){
-        return success(context, hasIconOrAnim, DURATION_SHORT, "success mooncake");
+    public static Mooncake success(Context context, ImageType iconOrLottie, boolean hasIconOrAnim){
+        return success(context, iconOrLottie, DURATION_SHORT, "success mooncake", hasIconOrAnim);
     }
-    public static Mooncake success(Context context, boolean hasIconOrAnim, int duration){
-        return success(context, hasIconOrAnim, duration, "success mooncake");
+    public static Mooncake success(Context context, ImageType iconOrLottie, int duration, boolean hasIconOrAnim){
+        return success(context, iconOrLottie, duration, "success mooncake", hasIconOrAnim);
     }
-    public static Mooncake success(Context context, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, GREEN_TEA, getDrawable(context, R.drawable.ic_success), hasIconOrAnim, text, duration);
+    public static Mooncake success(Context context, ImageType iconOrLottie, int duration, CharSequence text, boolean hasIconOrAnim){
+        return custom(context, GREEN_TEA, R.drawable.ic_success, iconOrLottie, hasIconOrAnim, text, duration);
     }
 
 
     //Warning
-    public static Mooncake warning(Context context, boolean hasIconOrAnim){
-        return warning(context, hasIconOrAnim, DURATION_SHORT, "warning mooncake");
+    public static Mooncake warning(Context context, ImageType iconOrLottie, boolean hasIconOrAnim){
+        return warning(context, iconOrLottie, DURATION_SHORT, "warning mooncake", hasIconOrAnim);
     }
-    public static Mooncake warning(Context context, boolean hasIconOrAnim, int duration){
-        return warning(context, hasIconOrAnim, duration, "warning mooncake");
+    public static Mooncake warning(Context context, ImageType iconOrLottie, int duration, boolean hasIconOrAnim){
+        return warning(context, iconOrLottie, duration, "warning mooncake", hasIconOrAnim);
     }
-    public static Mooncake warning(Context context, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, PINEAPPLE, getDrawable(context, R.drawable.ic_warning), hasIconOrAnim, text, duration);
+    public static Mooncake warning(Context context, ImageType iconOrLottie, int duration, CharSequence text, boolean hasIconOrAnim){
+        return custom(context, PINEAPPLE, R.drawable.ic_warning, iconOrLottie, hasIconOrAnim, text, duration);
     }
 
 
     //Error
-    public static Mooncake error(Context context, boolean hasIconOrAnim){
-        return error(context, hasIconOrAnim, DURATION_SHORT, "error mooncake");
+    public static Mooncake error(Context context, ImageType iconOrLottie, boolean hasIconOrAnim){
+        return error(context, iconOrLottie, DURATION_SHORT, "error mooncake", hasIconOrAnim);
     }
-    public static Mooncake error(Context context, boolean hasIconOrAnim, int duration){
-        return error(context, hasIconOrAnim, duration, "error mooncake");
+    public static Mooncake error(Context context, ImageType iconOrLottie, int duration, boolean hasIconOrAnim){
+        return error(context, iconOrLottie, duration, "error mooncake", hasIconOrAnim);
     }
-    public static Mooncake error(Context context, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, RED_BEAN, getDrawable(context, R.drawable.ic_error), hasIconOrAnim, text, duration);
+    public static Mooncake error(Context context, ImageType iconOrLottie, int duration, CharSequence text, boolean hasIconOrAnim){
+        return custom(context, RED_BEAN, R.drawable.ic_error, iconOrLottie, hasIconOrAnim, text, duration);
     }
 
 
     //Custom
-    public static Mooncake custom(Context context, String backgroundColor, Object drawableOrAnim, boolean hasIconOrAnim){
-        return custom(context, backgroundColor,drawableOrAnim, hasIconOrAnim, "custom mooncake", DURATION_SHORT);
+    public static Mooncake custom(Context context, String backgroundColor, Object viewIdOrJson, ImageType iconOrLottie, boolean hasIconOrAnim){
+        return custom(context, backgroundColor,viewIdOrJson, iconOrLottie, hasIconOrAnim, "custom mooncake", DURATION_SHORT);
     }
-    public static Mooncake custom(Context context, String backgroundColor, Object drawableOrAnim, boolean hasIconOrAnim, int duration){
-        return custom(context, backgroundColor, drawableOrAnim, hasIconOrAnim, "custom mooncake", duration);
+    public static Mooncake custom(Context context, String backgroundColor, Object viewIdOrJson, ImageType iconOrLottie, boolean hasIconOrAnim, int duration){
+        return custom(context, backgroundColor, viewIdOrJson, iconOrLottie, hasIconOrAnim, "custom mooncake", duration);
     }
-    public static Mooncake custom(Context context, String backgroundColor, Object drawableOrAnim, boolean hasIconOrAnim, CharSequence text){
-        return custom(context, backgroundColor, drawableOrAnim, hasIconOrAnim, text, DURATION_SHORT);
+    public static Mooncake custom(Context context, String backgroundColor, Object viewIdOrJson, ImageType iconOrLottie, boolean hasIconOrAnim, CharSequence text){
+        return custom(context, backgroundColor, viewIdOrJson, iconOrLottie, hasIconOrAnim, text, DURATION_SHORT);
     }
-    public static Mooncake custom(Context context, String backgroundColor, Object drawableOrAnim, boolean hasIconOrAnim, int duration, CharSequence text){
-        return custom(context, backgroundColor, drawableOrAnim, hasIconOrAnim, text, duration);
+    public static Mooncake custom(Context context, String backgroundColor, Object viewIdOrJson, ImageType iconOrLottie, boolean hasIconOrAnim, int duration, CharSequence text){
+        return custom(context, backgroundColor, viewIdOrJson, iconOrLottie, hasIconOrAnim, text, duration);
     }
     public static Mooncake custom(Context context, String backgroundColor,
-                                  Object drawableOrAnim, boolean hasIconOrAnim,
+                                  Object viewIdOrJson, ImageType iconOrLottie,
+                                  boolean hasIconOrAnim,
                                       CharSequence text, int duration){
 
         customMooncake = new Mooncake(context);
@@ -134,19 +140,17 @@ public class Mooncake extends Toast{
 
         //icon / anim
         if(hasIconOrAnim){
-            if(drawableOrAnim == null){
-                //exception
-            }
-            if(drawableOrAnim instanceof Drawable){
+            if(iconOrLottie.equals(ImageType.ICON)){
                 //icon
                 mooncakeLottieAnimationView.setVisibility(View.GONE);
-                drawableOrAnim = tint((Drawable) drawableOrAnim, Color.parseColor(backgroundColor));
+                mooncakeIcon.setBackgroundResource((int)viewIdOrJson);
 
-            }else {
+            }else if(iconOrLottie.equals(ImageType.LOTTIE)){
                 //lottie
+                mooncakeLottieAnimationView.setAnimation((String)viewIdOrJson);
+                mooncakeLottieAnimationView.playAnimation();
                 mooncakeIcon.setVisibility(View.GONE);
             }
-            setBackground(mooncakeIcon, (Drawable)drawableOrAnim);
         }else {
             mooncakeLottieAnimationView.setVisibility(View.GONE);
             mooncakeIcon.setVisibility(View.GONE);

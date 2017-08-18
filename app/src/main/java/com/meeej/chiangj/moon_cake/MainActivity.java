@@ -25,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
         Mooncake.custom(this, "#ffd4e5").show();
 
         Mooncake.Ingredients.ingredients().setGravity(Gravity.BOTTOM, 10, 20).prepare();*/
-        Mooncake.success(this, false).show();
-        Mooncake.warning(this, true).show();
+        Mooncake.success(this, Mooncake.ImageType.ICON, true).show();
+        Mooncake.warning(this, Mooncake.ImageType.ICON, true).show();
+        Mooncake.error(this, null, false).show();
+        Mooncake.original(this, null, false).show();
+
 
 
     }
