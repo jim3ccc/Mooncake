@@ -156,13 +156,16 @@ public class Mooncake extends Toast{
             removeView(mooncakeIcon);
         }
 
+        //text
+        mooncakeText.setText(text);
+
+
+        /*====================Below are attributes that need to be set using setters====================*/
+
         //textColor
         if(Mooncake.fontColor != null){
             mooncakeText.setTextColor(Color.parseColor(Mooncake.fontColor));
         }
-
-        //text
-        mooncakeText.setText(text);
 
         //text size
 
@@ -198,7 +201,7 @@ public class Mooncake extends Toast{
 
         private Ingredients(){}
 
-        public static  Ingredients ingredients(){
+        public static  Ingredients getIngredients(){
             if(ingredients == null){
                 ingredients = new Ingredients();
             }

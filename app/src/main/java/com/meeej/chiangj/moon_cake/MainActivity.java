@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         mShowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Mooncake.custom(MainActivity.this, "#EE82EE", "birthday-gift.json", Mooncake.ImageType.LOTTIE, true, Mooncake.DURATION_SHORT).show();
+                Mooncake.Ingredients.getIngredients().setFontColor("#FFFFFF").prepare();
+                Mooncake.custom(MainActivity.this, "#f6546a", "birthday-gift.json", Mooncake.ImageType.LOTTIE, true).show();
             }
         });
     }
