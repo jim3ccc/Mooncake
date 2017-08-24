@@ -2,16 +2,10 @@ package com.meeej.chiangj.mooncake;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
-import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,7 +32,7 @@ public class Mooncake extends Toast{
     public static final int DURATION_LONG = Toast.LENGTH_LONG;
 
     //Preset colors
-    public static final String LOTUS = "#FFFFFF";
+    public static final String LOTUS = "#f4a5b1";
     public static final String GREEN_TEA = "#43BD8D";
     public static final String PINEAPPLE = "#F7C43D";
     public static final String RED_BEAN = "#FF6F69";
@@ -60,7 +54,7 @@ public class Mooncake extends Toast{
         return original(context, iconOrLottie, duration, "original mooncake", hasIconOrAnim);
     }
     public static Mooncake original(Context context, ImageType iconOrLottie, int duration, CharSequence text, boolean hasIconOrAnim){
-        return custom(context, GREEN_TEA, R.drawable.ic_original, iconOrLottie, hasIconOrAnim, text, duration);
+        return custom(context, LOTUS, R.drawable.ic_original, iconOrLottie, hasIconOrAnim, text, duration);
     }
 
 
@@ -133,26 +127,26 @@ public class Mooncake extends Toast{
         final Mooncake mooncake = new Mooncake(context);
 
         //background
-        frame = MooncakeMolder.colorDrawableFrame(context, Color.parseColor(backgroundColor));
-        MooncakeMolder.setBackground(mooncakeLayout, frame);
+        frame = MooncakeMoulder.colorDrawableFrame(context, Color.parseColor(backgroundColor));
+        MooncakeMoulder.setBackground(mooncakeLayout, frame);
 
         //icon / anim
         if(hasIconOrAnim){
             if(iconOrLottie.equals(ImageType.ICON)){
                 //icon
-                MooncakeMolder.removeView(mooncakeLottieAnimationView);
+                MooncakeMoulder.removeView(mooncakeLottieAnimationView);
                 mooncakeIcon.setBackgroundResource((int)viewIdOrJson);
 
             }else if(iconOrLottie.equals(ImageType.LOTTIE)){
                 //lottie
-                MooncakeMolder.removeView(mooncakeIcon);
+                MooncakeMoulder.removeView(mooncakeIcon);
                 mooncakeLottieAnimationView.setAnimation((String)viewIdOrJson);
                 mooncakeLottieAnimationView.playAnimation();
                 mooncakeLottieAnimationView.setScale(2.0f);
             }
         }else {
-            MooncakeMolder.removeView(mooncakeLottieAnimationView);
-            MooncakeMolder.removeView(mooncakeIcon);
+            MooncakeMoulder.removeView(mooncakeLottieAnimationView);
+            MooncakeMoulder.removeView(mooncakeIcon);
         }
 
         //text

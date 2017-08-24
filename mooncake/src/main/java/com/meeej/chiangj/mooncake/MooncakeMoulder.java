@@ -10,7 +10,7 @@ import android.support.annotation.DrawableRes;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MooncakeMolder {
+public class MooncakeMoulder {
     protected static Drawable getDrawable(Context context, @DrawableRes int id){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             return context.getDrawable(R.drawable.toast_frame);

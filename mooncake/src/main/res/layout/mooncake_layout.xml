@@ -16,9 +16,8 @@
 
     <ImageView
         android:id="@+id/mooncake_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:padding="5dp"/>
+        android:layout_width="36dp"
+        android:layout_height="36dp"/>
 
     <TextView
         android:id="@+id/mooncake_text"
