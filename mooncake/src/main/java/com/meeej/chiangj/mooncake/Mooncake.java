@@ -22,17 +22,16 @@ import com.airbnb.lottie.LottieAnimationView;
 public class Mooncake extends Toast{
 
     //Additional Mooncake attributes
-    private static Drawable icon;
-    private static String font;
-    private static String fontColor;
-    private static int borderWidth = -1;
-    private static int borderColor = -1;
-    private static View.OnClickListener onClickListener;
-    private static int lottieView = -1;
-    private static int gravity = -1;
-    private static int xOffset = -1;
-    private static int yOffset = -1;
-
+    protected static Drawable icon;
+    protected static String font;
+    protected static String fontColor;
+    protected static int borderWidth = -1;
+    protected static int borderColor = -1;
+    protected static View.OnClickListener onClickListener;
+    protected static int lottieView = -1;
+    protected static int gravity = -1;
+    protected static int xOffset = -1;
+    protected static int yOffset = -1;
 
     //Duration
     public static final int DURATION_SHORT = Toast.LENGTH_SHORT;
@@ -134,26 +133,26 @@ public class Mooncake extends Toast{
         final Mooncake mooncake = new Mooncake(context);
 
         //background
-        frame = colorDrawableFrame(context, Color.parseColor(backgroundColor));
-        setBackground(mooncakeLayout, frame);
+        frame = MooncakeMolder.colorDrawableFrame(context, Color.parseColor(backgroundColor));
+        MooncakeMolder.setBackground(mooncakeLayout, frame);
 
         //icon / anim
         if(hasIconOrAnim){
             if(iconOrLottie.equals(ImageType.ICON)){
                 //icon
-                removeView(mooncakeLottieAnimationView);
+                MooncakeMolder.removeView(mooncakeLottieAnimationView);
                 mooncakeIcon.setBackgroundResource((int)viewIdOrJson);
 
             }else if(iconOrLottie.equals(ImageType.LOTTIE)){
                 //lottie
-                removeView(mooncakeIcon);
+                MooncakeMolder.removeView(mooncakeIcon);
                 mooncakeLottieAnimationView.setAnimation((String)viewIdOrJson);
                 mooncakeLottieAnimationView.playAnimation();
                 mooncakeLottieAnimationView.setScale(2.0f);
             }
         }else {
-            removeView(mooncakeLottieAnimationView);
-            removeView(mooncakeIcon);
+            MooncakeMolder.removeView(mooncakeLottieAnimationView);
+            MooncakeMolder.removeView(mooncakeIcon);
         }
 
         //text
@@ -181,117 +180,6 @@ public class Mooncake extends Toast{
         mooncake.setDuration(duration);
 
         return mooncake;
-    }
-
-    //Ingredients
-    public static class Ingredients{
-
-        private static Ingredients ingredients;
-
-        private Drawable icon = Mooncake.icon;
-        private String font = Mooncake.font;
-        private String fontColor = Mooncake.fontColor;
-        private int borderWidth = Mooncake.borderWidth;
-        private int borderColor = Mooncake.borderColor;
-        private View.OnClickListener onClickListener = Mooncake.onClickListener;
-        private int lottieView = Mooncake.lottieView;
-        private int gravity = Mooncake.gravity;
-        private int xOffset = Mooncake.xOffset;
-        private int yOffset = Mooncake.yOffset;
-
-        private Ingredients(){}
-
-        public static  Ingredients getIngredients(){
-            if(ingredients == null){
-                ingredients = new Ingredients();
-            }
-            return ingredients;
-        }
-
-        public Ingredients setIcon(Drawable icon) {
-            this.icon = icon;
-            return this;
-        }
-
-        public Ingredients setFont(String font) {
-            this.font = font;
-            return this;
-        }
-
-        public Ingredients setFontColor(String fontColor) {
-            this.fontColor = fontColor;
-            return this;
-        }
-
-        public Ingredients setBorderWidth(int borderWidth) {
-            this.borderWidth = borderWidth;
-            return this;
-        }
-
-        public Ingredients setBorderColor(int borderColor) {
-            this.borderColor = borderColor;
-            return this;
-        }
-
-        public Ingredients setOnClickListener(View.OnClickListener onClickListener) {
-            this.onClickListener = onClickListener;
-            return this;
-        }
-
-        public Ingredients setLottieView(int lottieView) {
-            this.lottieView = lottieView;
-            return this;
-        }
-
-        public Ingredients setGravity(int gravity, int xOffset, int yOffset) {
-            this.gravity = gravity;
-            this.xOffset = xOffset;
-            this.yOffset = yOffset;
-            return this;
-        }
-
-        public void prepare(){
-            Mooncake.icon = this.icon;
-            Mooncake.font = this.font;
-            Mooncake.fontColor = this.fontColor;
-            Mooncake.borderWidth = this.borderWidth;
-            Mooncake.borderColor = this.borderColor;
-            Mooncake.onClickListener = this.onClickListener;
-            Mooncake.lottieView = this.lottieView;
-            Mooncake.gravity = this.gravity;
-            Mooncake.xOffset = this.xOffset;
-            Mooncake.yOffset = this.yOffset;
-        }
-    }
-
-    private static Drawable getDrawable(Context context, @DrawableRes int id){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            return context.getDrawable(R.drawable.toast_frame);
-        }else {
-            return context.getResources().getDrawable(R.drawable.toast_frame);
-        }
-    }
-
-    private static void setBackground(View view, Drawable drawable){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
-            view.setBackground(drawable);
-        }else{
-            view.setBackgroundDrawable(drawable);
-        }
-    }
-
-    private static Drawable colorDrawableFrame(Context context, @ColorInt int tintColor) {
-        final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, R.drawable.toast_frame);
-        return tint(toastDrawable, tintColor);
-    }
-
-    static Drawable tint(Drawable drawable, @ColorInt int tintColor) {
-        drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
-        return drawable;
-    }
-
-    static void removeView(View view){
-        ((ViewGroup)view.getParent()).removeView(view);
     }
 
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.meeej.chiangj.mooncake.Ingredients;
 import com.meeej.chiangj.mooncake.Mooncake;
 
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         mShowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Mooncake.Ingredients.getIngredients().setFontColor("#FFFFFF").prepare();
+                Ingredients.getIngredients().setFontColor("#FFFFFF").prepare();
                 Mooncake.custom(MainActivity.this, "#f6546a", "birthday-gift.json", Mooncake.ImageType.LOTTIE, true).show();
             }
         });
