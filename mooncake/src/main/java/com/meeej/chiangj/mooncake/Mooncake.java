@@ -2,6 +2,7 @@ package com.meeej.chiangj.mooncake;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.view.LayoutInflater;
@@ -151,6 +152,10 @@ public class Mooncake extends Toast{
 
         //text
         mooncakeText.setText(text);
+
+        //font
+        Typeface type = Typeface.createFromAsset(context.getAssets(), font);
+        mooncakeText.setTypeface(type);
 
 
         /*====================Below are attributes that need to be set using setters====================*/
